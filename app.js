@@ -24,8 +24,7 @@ app.use(express.urlencoded());
 app.use(express.bodyParser({
     uploadDir:config.uploadDir,
     keepExtensions:true,
-    limit:10000000
-    //defer:true
+    limit:1000000000/*10M*/
 }));
 /*app.disable("multipart");*/
 app.use(express.methodOverride());

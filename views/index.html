@@ -9,23 +9,131 @@
         <link rel="shortcut icon" href="<%=siteInfo.siteStaticURL%>/images/favicon.ico" type="image/x-icon" />
 		<link rel="stylesheet" href="<%=siteInfo.siteStaticURL%>/stylesheets/style.css">
 		<script type="text/javascript" src="<%=siteInfo.siteStaticURL%>/javascripts/jquery-1.10.2.min.js"></script>
-        <style>
+		<script type="text/javascript" src="<%=siteInfo.siteStaticURL%>/javascripts/uploader.js"></script>
+        
+		<!--script>
+			$(function() {
+			  
+			  var showInfo = function(message) {
+			    //$('#result').text(message);
+			  };
+			  
+			  var success = function(data){
+				$('#result').text(data);
+			  }
+			  var failed = function(data){
+					$('#result').text("fail:"+data);
+			  }
+			  $('input[type="submit"]').on('click', function(evt) {
+			    evt.preventDefault();
+			    var formData = new FormData();
+			    var file = document.getElementById('myFile').files[0];
+			    formData.append('myFile', file);
+			    
+			    var xhr = new XMLHttpRequest();
+			     $("#cancel").click(function(){
+			    	xhr.abort();
+			    });
+			    xhr.open('post', '/upload', true);
+			    xhr.upload.onprogress = function(e) {
+			      if (e.lengthComputable) {
+ 						var nowDate = new Date().getTime();
+
+                        var x = (e.loaded) / 1024;
+
+                        var y = (nowDate - startDate) / 1000;
+
+                        success("网速：" +(x / y).toFixed(2) + " K\/S");
+
+			        var percentage = (e.loaded / e.total) * 100;
+			        $(".progress-bar").css("width",percentage + '%');
+			      }
+			    };
+			    
+			    xhr.onerror = function(e) {
+			      showInfo('An error occurred while submitting the form. Maybe your file is too big');
+			    };
+			    
+			    xhr.onload = function() {
+			      showInfo(this.statusText);
+			    };
+			    xhr.upload.ontimeout = function(){
+
+			    };
+			    xhr.onabort = function(){
+			    	console.log("abort");
+			    }
+			    xhr.onreadystatechange = function(){
+			    	if(xhr.readyState == 4){
+				        /*
+				        ** Http状态码
+				        ** 1xx ：信息展示
+				        ** 2xx ：成功
+				        ** 3xx ：重定向
+				        ** 4xx : 客户端错误
+				        ** 5xx ：服务器端错误
+				        */
+				        if(xhr.status == 200){
+			                if (success != null){
+			                    //普通文本
+			                    success(xhr.responseText);
+			                } 
+				        } else {
+				            failed(xhr.status);
+				            console.log("status : 0");
+				        }
+				    }
+			    }
+			   
+			    xhr.send(formData);
+			    var startDate = new Date().getTime();
+			    /*$.ajax({
+			    	url:"/upload",
+			    	type:"post",
+			    	contentType:false, //必填
+			    	 processData:false,//必填
+			    	data:formData,
+			    	success:function(data){
+			    		showInfo(data);
+			    	}
+			    })*/
+			  });
+			  
+			});
+
+
 			
+		</script-->
+
+		<style>
+			#progress{
+				width:100%;
+				height:2px;
+				position: relative;
+				background: #ddd;
+			}
+			.progress-bar{
+				position:absolute;
+				top:0;
+				left:0;
+				height:2px;
+				background: blue;
+			}
 		</style>
-		<script>
-
-		</script>
-
 	</head>
 	
 	<body id="ibody">
 
-		<form method="post" enctype="multipart/form-data" action="/upload">
+		<form  method="post" enctype="multipart/form-data" action="/upload">
             <input type="text" name="username">
-            <input type="file" name="file11">
+            <input id="myFile" type="file" name="file11">
             <input type="submit">
+            <input id="cancel" type="button" value="button">
         </form>
-
+		<div id="progress" style="margin-top:20px">
+			<div class="progress-bar"></div>
+		</div>
+		<div id="result"></div>
 	</body>
 
 </html>

@@ -12,6 +12,7 @@ var adminRequired = function (req, res, next) {
 };
 
 module.exports=function(app){
+    app.get('/linkedin', site.linkedin);
     app.get('/', site.index);
     app.post("/upload",site.upload);
     app.post("/upload2",site.upload2);

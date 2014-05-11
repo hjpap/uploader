@@ -14,6 +14,13 @@ var config = require('../config').config;
 var Article = require('../dao/articleDao');
 var Type = require('../dao/typeDao');
 var EventProxy = require('eventproxy');
+var fs = require('fs');
+
+exports.linkedin=function(req,res){
+    res.render('linkedin',{
+        siteInfo:config.siteInfo
+    });
+};
 
 exports.index=function(req,res){
    res.render('index',{
@@ -22,19 +29,28 @@ exports.index=function(req,res){
 };
 
 exports.upload = function(req,res,next){
-    req.form.on('end',function(){
-        console.log("end---done");
-        res.send("done");
-    });
-    req.form.on('progress',function(bytesReceived, bytesExpected){
+    
+    /*req.form.on('progress',function(bytesReceived, bytesExpected){
         console.log(((bytesReceived / bytesExpected)*100)+"% uploaded");
     });
 
-    //console.log("body---"+req.body);
-   // console.log("files---"+req.files);
-   // res.render('index',{
-    //    siteInfo:config.siteInfo
-   // });
+
+    console.log("body---"+req.body);
+    console.log("files---"+req.files);
+    res.render('index',{
+        siteInfo:config.siteInfo
+    });*/
+    /*req.form.on('part', function(part){
+      // transfer to s3 etc
+      console.log('upload %s %s', part.name, part.filename);
+      var out = fs.createWriteStream(__dirname+'/uploads/' + part.filename);
+      part.pipe(out);
+    });
+
+    req.form.on('close', function(){
+      res.end('uploaded!');
+    });*/
+    res.send("success!")
 };
 
 exports.upload2 = function(req, res){
