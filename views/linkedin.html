@@ -15,21 +15,139 @@
             authorize: true
         </script>
         <style>
-			
-		</style>
-		<script>
+             .node{
+                position:relative;
+                /*cursor:pointer;*/
+                background:#fff;
+                cursor:move;
+                width:177px;
+                height:67px;
+                border:1px solid #41719C;
+                font-size:12px;
+                color:#558EBF;
+            }
+             .nodetext{
+                position:relative;
+                float:right;
+                width:110px;
+                margin-top:5px;
+                margin-left:0px;
+                font-family:  Helvetica,Arial,sans-serif;
+            }
+            .node:hover .btns{
+                display:block;
+            }
+             .btns{
+                display:none;
+                position:absolute;
+                bottom:1px;
+                right:5px;
+            }
+             .btns  .small-img{
+                width:10px;
+                height:10px;
+                cursor:pointer;
+                margin-left:10px;
+                float:left;
+            }
+             .node .drg-img{
+                background:url('ave_orgchart_img_move.png') no-repeat;
+                background-size:100% 100%;
+            }
+             .node .view-img{
+                background:url('ave_orgchart_img_eye.png') no-repeat;
+                background-size:100% 100%;
+            }
+             .node .more-img{
+                background:url('ave_orgchart_img_more.png') no-repeat;
+                background-size:100% 100%;
+            }
+             .gray-node .drg-img{
+                background:url('ave_orgchart_img_w_move.png') no-repeat;
+                background-size:100% 100%;
+            }
+             .gray-node .view-img{
+                background:url('ave_orgchart_img_w_eye.png') no-repeat;
+                background-size:100% 100%;
+            }
+             .gray-node .more-img{
+                background:url('ave_orgchart_img_w_more.png') no-repeat;
+                background-size:100% 100%;
+            }
+             .node img{
+                float:left;
+                width:60px;
+                height:100%;
+            }
+             .node .name{
+                font-size:14px;
+                font-weight:bold;
 
-		</script>
-
+                white-space:nowrap;
+                text-overflow:ellipsis; /* for internet explorer */
+                overflow:hidden;
+            }
+            .node .title{
+                font-size:11px;
+                white-space:nowrap;
+                text-overflow:ellipsis; /* for internet explorer */
+                overflow:hidden;
+            }
+             .nodetext .title a{
+                color: #558EBF;
+            }
+            .inicon{
+                position:absolute;
+                left:42px;
+                bottom:0;
+            }
+        </style>
 	</head>
 	
 	<body id="ibody">
     <script type="in/Login">
         Hello, <?js= firstName ?> <?js= lastName ?>.
     </script>
+
+    <div class="node no-child">
+        <div style="height: 100%; width: 100%; position: relative;">
+            <img src="<%=siteInfo.siteStaticURL%>/images/EmptyUserImage.png">
+            <div class="inicon"><script type="IN/MemberProfile" data-id="cn.linkedin.com/pub/jacqueline-zhou/15/461/a07/zh-cn" data-format="hover"></script></div>
+            <div class="nodetext">
+                <div title="adsf asdf" class="name">
+                    adsf asdf
+                </div>
+                <div title="Member dddaoe" class="title">
+                    Member dddaoe
+                </div>
+                <div title="11111" class="title">
+                    11111
+                </div>
+                <div class="title">
+                    <a title="a@a.com" href="mailto:a@a.com">a@a.com</a>
+                </div>
+            </div>
+            <div class="rate-host">
+                <div class="firend-silider-bg" style="background-color: rgb(245, 46, 17); background-position: initial initial; background-repeat: initial initial;">
+                    <div class="firend-bar-bg" style="background-color: rgb(245, 46, 17); width: 0px; background-position: initial initial; background-repeat: initial initial;">
+                        <div title="" class="firend-bar" style="display: none;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="btns">
+                <div class="small-img drg-img"></div>
+                <div class="small-img view-img"></div>
+                <div class="small-img more-img"></div>
+            </div>
+        </div>
+        <div class="node_line">
+            <div class="node_line2" style="height: 0px;"></div>
+        </div>
+    </div>
+
 <script>
 
-
+    //cn.linkedin.com/pub/wei-wang/92/b27/877/
 </script>
 
 	</body>
